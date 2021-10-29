@@ -1,19 +1,20 @@
 -- Qual o ranking dos diretores por ratings e os piores?
-select Director from episodes;
+
 SELECT 
-		e.Director,
+		concat_ws(',',Director, Episode, Season),
         MAX(Rating) AS TOP10_DIRECTORS
     FROM
-        episodes e
-    GROUP BY e.Director
+        episodes 
+    GROUP BY 1
     ORDER BY TOP10_DIRECTORS DESC
 LIMIT 10;
 
+
 SELECT 
-		e.Director,
-        MIN(Rating) AS LAST10_DIRECTORS
+	concat_ws(',',Director, Episode, Season),
+        MIN(Rating) AS TOP10_DIRECTORS
     FROM
         episodes e
-    GROUP BY e.Director
+    GROUP BY 1
     ORDER BY LAST10_DIRECTORS
 LIMIT 10;
